@@ -56,20 +56,18 @@ const SignUpPage = () => {
             </h3>
           </div>
 
-          <div className="flex flex-col space-y-2 sm:space-y-0 sm:flex-row justify-center items-center space-x-2">
+          <div className="flex flex-col space-y-2 sm:space-y-0 sm:flex-row mx-4 sm:mx-0 justify-center items-center space-x-2">
             {step == "email" && (
-              <>
-                <Input
-                  label="Email address"
-                  onChange={(e) => {
-                    validEmailHandler(e);
-                  }}
-                  id="email"
-                  type="email"
-                  value={email}
-                  error={error}
-                />
-              </>
+              <Input
+                label="Email address"
+                onChange={(e) => {
+                  validEmailHandler(e);
+                }}
+                id="email"
+                type="email"
+                value={email}
+                error={error}
+              />
             )}
             {step == "password" && (
               <>

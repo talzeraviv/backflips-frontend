@@ -11,7 +11,7 @@ export const Signin = () => {
 
   return (
     <>
-      <div className="relative h-full w-full bg-[url('/src/assets/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
+      <div className="absolute h-full w-full bg-[url('/src/assets/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
         <div className="bg-black w-full h-full lg:bg-opacity-50">
           <nav className="px-12 py-5">
             <img src={logo} alt="logo" className="h-12" />

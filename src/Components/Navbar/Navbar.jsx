@@ -13,6 +13,7 @@ const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [ShowBackgroud, setShowBackgroud] = useState(false);
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,7 +72,12 @@ const Navbar = () => {
 
         <div className="flex flex-row ml-auto gap-7 items-center">
           <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
-            <BsSearch />
+            <BsSearch
+              onClick={setActive}
+              className={`outline-none bg-black ${
+                active ? "border border-solid" : ""
+              }`}
+            />
           </div>
           <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
             <BsBell />
