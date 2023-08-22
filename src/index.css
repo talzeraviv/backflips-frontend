@@ -6,3 +6,12 @@ html {
   --tw-bg-opacity: 1;
   background-color: rgb(24 24 27 / var(--tw-bg-opacity));
 }
+
+@layer utilities {
+  .zindextransition:hover {
+    transition: transform 200ms 0ms, z-index 0ms 0ms;
+  }
+  .zindextransition {
+    transition: transform 200ms 0ms, z-index 0ms 200ms;
+  }
+}

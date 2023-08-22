@@ -1,13 +1,35 @@
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import logo from "../assets/logo.svg";
 import Input from "../Components/input/Input";
+import { useNavigate } from "react-router-dom";
+import { Store } from "../Context/StoreProvider";
+import axios from "axios";
+import { USER_SIGNIN } from "../Reducers/Actions";
 
 export const Signin = () => {
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { userInfo } = state;
+
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [variant, setVariant] = useState("login");
+
+  const Navigate = useNavigate();
+
+  const submitHandler = async () => {
+    try {
+      const { data } = await axios.post("/users/signin", {
+        email,
+        password,
+      });
+      console.log(data);
+      await ctxDispatch({ type: USER_SIGNIN, payload: data });
+      Navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <>
@@ -23,11 +45,11 @@ export const Signin = () => {
               </h2>
               <div className="flex flex-col gap-4">
                 <Input
-                  id="username"
-                  onChange={(e) => setUsername(e.target.value)}
-                  value={username}
-                  label="Username or Email"
-                  type="username"
+                  id="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                  label="Email"
+                  type="email"
                 />
 
                 <Input
@@ -38,7 +60,10 @@ export const Signin = () => {
                   type="password"
                 />
               </div>
-              <button className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition ">
+              <button
+                className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition "
+                onClick={submitHandler}
+              >
                 Login
               </button>
               <p className="text-neutral-500 mt-12">
