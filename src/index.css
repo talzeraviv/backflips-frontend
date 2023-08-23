@@ -5,13 +5,32 @@
 html {
   --tw-bg-opacity: 1;
   background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 @layer utilities {
-  .zindextransition:hover {
-    transition: transform 200ms 0ms, z-index 0ms 0ms;
+  .swiper-slide-z-transition {
+    z-index: 15;
+    transition-property: z-index;
+    transition-duration: 200ms;
+    transition-delay: 300ms;
   }
-  .zindextransition {
-    transition: transform 200ms 0ms, z-index 0ms 200ms;
+
+  .swiper-slide-z-transition:hover {
+    z-index: 20; /* Set to a higher value to ensure it's above neighboring components */
+    transition-delay: 300ms;
+  }
+
+  .swiper-z-transition {
+    z-index: 15; /* Set to the desired starting value */
+    transition-property: z-index;
+    transition-duration: 200ms; /* Match the ContentCard's transition duration */
+    transition-delay: 300ms; /* Match the ContentCard's transition delay */
+  }
+
+  .swiper-z-transition:hover {
+    z-index: 20; /* Set to a higher value to ensure it's above neighboring components */
+    transition-delay: 300ms; /* Match the ContentCard's transition delay */
   }
 }
