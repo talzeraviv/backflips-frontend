@@ -1,0 +1,3 @@
+swiper [class^="swiper-button-"]::after {
+  content: "";
+}
