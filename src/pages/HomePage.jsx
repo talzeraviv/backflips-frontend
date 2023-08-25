@@ -1,43 +1,49 @@
 import React, { useContext, useEffect } from "react";
-import Navbar from "../Components/Navbar/navbar";
-import Billboard from "../Components/Billboard/Billboard";
-import useFeaturedContent from "../hooks/useFeaturedContent";
-import FeaturedContent from "../Components/FeaturedContent/FeaturedContent";
-import ContentCarousel from "../Components/ContentCarousel/ContentCarousel";
-import { Store } from "../Context/StoreProvider";
 import { useNavigate } from "react-router-dom";
 
+import Navbar from "../Components/Navbar/navbar";
+import Billboard from "../Components/Billboard/Billboard";
+import FeaturedContentCarousel from "../Components/FeaturedContent/FeaturedContentCarousel";
+import useFeaturedContent from "../hooks/useFeaturedContent";
+
+import { Store } from "../Context/StoreProvider";
+
 const HomePage = () => {
+  // My context store is responsible for extracting user information from the Sign In/Sign Up page.
+  const { userInfo } = useContext(Store);
   const Navigate = useNavigate();
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { userInfo } = state;
 
-  useEffect(() => {
-    if (!userInfo) {
-      Navigate("/signin");
-    }
-  }, [state]);
-
+  // Fetching of data from the useFeaturedContent hook (SWR)
   const { data, error, isLoading } = useFeaturedContent();
+
+  // Redirecting users that haven't signed in yet. (UNMARKED FOR NOW)
+  // useEffect(() => {
+  //   if (!userInfo) {
+  //     Navigate("/signin");
+  //   }
+  // }, [userInfo]);
 
   return (
     <>
       <Navbar />
       <Billboard />
-
-      <div className="pb-40 text-white">
-        {isLoading ? (
-          <h1>Loading content...</h1>
-        ) : error ? (
-          <h1>Error... {error.message}</h1>
-        ) : (
-          data.map((content) => (
-            <FeaturedContent key={content._id} data={content} />
-          ))
-        )}
-      </div>
+      <RenderContent data={data} error={error} isLoading={isLoading} />
     </>
   );
+};
+
+const RenderContent = ({ data, error, isLoading }) => {
+  if (isLoading) {
+    return <h1>Loading content...</h1>;
+  }
+
+  if (error) {
+    return <h1>Error... {error.message}</h1>;
+  }
+
+  return data.map((content) => (
+    <FeaturedContentCarousel key={content._id} data={content} />
+  ));
 };
 
 export default HomePage;

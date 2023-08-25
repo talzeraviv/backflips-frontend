@@ -12,15 +12,15 @@ const TOP_OFFSET = 66;
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showAccountMenu, setShowAccountMenu] = useState(false);
-  const [ShowBackgroud, setShowBackgroud] = useState(false);
+  const [ShowBackgroud, setShowBackground] = useState(false);
   const [active, setActive] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY >= TOP_OFFSET) {
-        setShowBackgroud(true);
+        setShowBackground(true);
       } else {
-        setShowBackgroud(false);
+        setShowBackground(false);
       }
     };
 
@@ -39,7 +39,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="w-full fixed z-40">
+    <nav className="w-full fixed z-20">
       <div
         className={`
             px-4

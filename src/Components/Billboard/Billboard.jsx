@@ -8,11 +8,11 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 const Billboard = () => {
   const { data } = useBillboard();
   return (
-    <div className="relative h-[56.25vw] -z-10">
+    <div className="relative h-[56.25vw]">
       <img
         className="absolute w-full h-full object-cover"
         src={data?.imgThumb}
-        alt=""
+        alt={data?.title}
       />
       <div className="absolute w-full h-full bg-zinc-900 bg-gradient-to-b from-zinc-900 to-transparent bg-opacity-10"></div>
       <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16 text-white">
