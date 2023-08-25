@@ -27,7 +27,12 @@ const HomePage = () => {
     <>
       <Navbar />
       <Billboard />
-      <RenderContent data={data} error={error} isLoading={isLoading} />
+      <RenderContent
+        className={"absolute"}
+        data={data}
+        error={error}
+        isLoading={isLoading}
+      />
     </>
   );
 };

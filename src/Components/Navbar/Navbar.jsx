@@ -13,7 +13,6 @@ const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [ShowBackgroud, setShowBackground] = useState(false);
-  const [active, setActive] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,18 +39,23 @@ const Navbar = () => {
 
   return (
     <nav className="w-full fixed z-20">
+      {/* <div className="absolute w-full h-[10vw] bg-gradient-to-b from-zinc-950 to-transparent" /> */}
       <div
         className={`
-            px-4
-            md:px-16
-            py-6
-            flex
-            flex-row
-            items-center
-            transition
-            duration-500
-            ${ShowBackgroud ? "bg-zinc-900 bg-opacity-90" : ""}
-            `}
+        px-4
+        md:px-16
+        py-6
+        flex
+        flex-row
+        items-center
+        transition
+        duration-500
+        ${
+          ShowBackgroud
+            ? "bg-zinc-900 bg-opacity-90"
+            : "bg-gradient-to-b from-zinc-900 to-transparent"
+        }
+        `}
       >
         <img className="h-4 lg:h-7" src={logo} alt="" />
 
@@ -72,12 +76,7 @@ const Navbar = () => {
 
         <div className="flex flex-row ml-auto gap-7 items-center">
           <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
-            <BsSearch
-              onClick={setActive}
-              className={`outline-none bg-black ${
-                active ? "border border-solid" : ""
-              }`}
-            />
+            <BsSearch />
           </div>
           <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
             <BsBell />

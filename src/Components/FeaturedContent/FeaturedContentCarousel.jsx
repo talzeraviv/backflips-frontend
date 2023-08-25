@@ -10,6 +10,9 @@ import "swiper/css/navigation";
 import "swiper/css";
 
 const FeaturedContentCarousel = ({ data }) => {
+  const SLIDES_PER_GROUP = 4;
+  const SLIDES_PER_VIEW = 4;
+
   if (!data) {
     return null;
   }
@@ -28,19 +31,31 @@ const FeaturedContentCarousel = ({ data }) => {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         }}
-        slidesPerGroup={4}
+        slidesPerGroup={SLIDES_PER_GROUP}
         speed={800}
         modules={[Navigation]}
-        slidesPerView={4}
+        slidesPerView={SLIDES_PER_VIEW}
         spaceBetween={10}
         loop
       >
-        {data.contentList.map((content) => (
-          <SwiperSlide key={content._id} className="swiper-slide-z-transition ">
-            <ContentCard content={content} />
-          </SwiperSlide>
-        ))}
+        {data.contentList.map((content, index) => {
+          const relativePosition = index % SLIDES_PER_VIEW;
+          const isFirstInGroup = relativePosition === 0;
+          const isLastInGroup = relativePosition === SLIDES_PER_GROUP - 1;
 
+          return (
+            <SwiperSlide
+              key={content._id}
+              className="swiper-slide-z-transition "
+            >
+              <ContentCard
+                content={content}
+                isFirstInGroup={isFirstInGroup}
+                isLastInGroup={isLastInGroup}
+              />
+            </SwiperSlide>
+          );
+        })}
         {/* The overrided Left and Right navigation buttons */}
         <img src={ChevronLeft} className="swiper-button-prev" />
         <img src={ChevronRight} className="swiper-button-next" />
