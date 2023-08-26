@@ -9,6 +9,8 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
   const handleMouseEnter = () => setShowVideo(true);
   const handleMouseLeave = () => setShowVideo(false);
 
+  const rating = 90 + Math.floor(Math.random() * 10);
+
   let hoverIndent = "";
 
   if (isFirstInGroup || isLastInGroup) {
@@ -24,7 +26,7 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
       onMouseLeave={handleMouseLeave}
     >
       <img
-        className="cursor-pointer object-cover transition shadow-xl rounded-md group-hover:opacity-90 sm:group-hover:opacity-0 delay-300 w-full h-[12vw]"
+        className="cursor-pointer object-cover transition shadow-xl rounded-md group-hover:opacity-90 sm:group-hover:opacity-0 delay-300 w-full h-full"
         src={content.imgThumb}
         alt={content.title}
       />
@@ -54,9 +56,7 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
           </div>
 
           <div className="flex flex-row gap-2 items-center">
-            <p className="text-green-400 font-semibold">
-              {90 + Math.floor(Math.random() * 10)}% Match
-            </p>
+            <p className="text-green-400 font-semibold">{rating}% Match</p>
             <p className="text-white text-[10px] lg:text-sm">
               {content.duration}
             </p>

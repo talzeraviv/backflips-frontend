@@ -5,13 +5,12 @@
 html {
   --tw-bg-opacity: 1;
   background-color: rgb(24 24 27 / var(--tw-bg-opacity));
-  max-width: 100%;
   overflow-x: hidden;
 }
 
 @layer components {
   [class^="swiper-button-"] {
-    @apply -m-16 h-full w-12 top-0 bottom-0 bg-black my-auto opacity-80 hover:opacity-100 cursor-pointer transition content-none;
+    @apply -m-16 h-full w-11 top-0 bottom-0 my-auto hover:bg-black opacity-80 hover:opacity-100 cursor-pointer transition content-none rounded-md;
   }
 }
 

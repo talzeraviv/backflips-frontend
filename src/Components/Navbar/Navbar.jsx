@@ -39,7 +39,6 @@ const Navbar = () => {
 
   return (
     <nav className="w-full fixed z-20">
-      {/* <div className="absolute w-full h-[10vw] bg-gradient-to-b from-zinc-950 to-transparent" /> */}
       <div
         className={`
         px-4
@@ -53,7 +52,7 @@ const Navbar = () => {
         ${
           ShowBackgroud
             ? "bg-zinc-900 bg-opacity-90"
-            : "bg-gradient-to-b from-zinc-900 to-transparent"
+            : "bg-gradient-to-b from-black"
         }
         `}
       >
