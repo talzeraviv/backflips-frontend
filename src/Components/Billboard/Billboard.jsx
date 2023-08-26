@@ -23,9 +23,9 @@ const Billboard = () => {
   return (
     <div className="relative h-[42vw]">
       <ReactPlayer
-        className="absolute w-full h-full object-cover pointer-events-none"
+        className="absolute object-cover pointer-events-none"
         muted
-        disablePictureInPicture={true}
+        disablePictureInPicture
         playing
         controls={false}
         url={data?.video}
@@ -42,7 +42,7 @@ const Billboard = () => {
           {data?.title}
         </p>
         <p
-          className={`text-[8px] ${descriptionPosition} transition-opacity duration-[2000ms] md:text-lg mt-3 md:mt-8 w-[80%] md:w-[80%] lg:w-[45%] break-words`}
+          className={`text-[8px] ${descriptionPosition} transition-opacity duration-[2000ms] md:text-lg mt-3 md:mt-8 w-[80%] md:w-[80%] lg:w-[45%]`}
         >
           {data?.description}
         </p>
