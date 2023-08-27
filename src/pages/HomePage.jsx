@@ -3,25 +3,26 @@ import { useNavigate } from "react-router-dom";
 
 import Navbar from "../Components/Navbar/navbar";
 import Billboard from "../Components/Billboard/Billboard";
-import FeaturedContentCarousel from "../Components/FeaturedContent/FeaturedContentCarousel";
+import FeaturedContentCarousel from "../Components/FeaturedContentCarousel/FeaturedContentCarousel";
 import useFeaturedContent from "../hooks/useFeaturedContent";
 
 import { Store } from "../Context/StoreProvider";
 
 const HomePage = () => {
   // My context store is responsible for extracting user information from the Sign In/Sign Up page.
-  const { userInfo } = useContext(Store);
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { userInfo } = state;
   const Navigate = useNavigate();
 
   // Fetching of data from the useFeaturedContent hook (SWR)
   const { data, error, isLoading } = useFeaturedContent();
 
   // Redirecting users that haven't signed in yet. (UNMARKED FOR NOW)
-  // useEffect(() => {
-  //   if (!userInfo) {
-  //     Navigate("/signin");
-  //   }
-  // }, [userInfo]);
+  useEffect(() => {
+    if (!userInfo) {
+      Navigate("/signin");
+    }
+  }, []);
 
   return (
     <>

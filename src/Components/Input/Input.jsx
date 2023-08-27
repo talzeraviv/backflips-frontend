@@ -24,7 +24,7 @@ const Input = ({ id, onChange, value, label, type, error }) => {
             w-full
             text-md
             text-white
-             bg-black
+            bg-black
             appearance-none
             peer`}
         placeholder=""

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BsFillPlayFill } from "react-icons/bs";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/youtube";
 
 const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
   const [showVideo, setShowVideo] = useState(false);
@@ -9,7 +9,13 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
   const handleMouseEnter = () => setShowVideo(true);
   const handleMouseLeave = () => setShowVideo(false);
 
-  const rating = 90 + Math.floor(Math.random() * 10);
+  const [rating, setRating] = useState(0); // Initialize with 0 or a default value
+  // Calculate the rating when the component mounts
+  useEffect(() => {
+    // Use your rating calculation logic here, for example:
+    const calculatedRating = 90 + Math.floor(Math.random() * 10); // Random rating between 0 and 100
+    setRating(calculatedRating);
+  }, []);
 
   let hoverIndent = "";
 
@@ -31,9 +37,9 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
         alt={content.title}
       />
       <div
-        className={`opacity-0 absolute top-0 transition duration-200 z-10 shadow-md invisible sm:visible delay-300 w-full scale-0 group-hover:scale-125 group-hover:-translate-y-[6vw] ${hoverIndent} group-hover:opacity-100`}
+        className={`absolute opacity-0 top-0 transition duration-200 z-10 shadow-md invisible sm:visible delay-300 w-full scale-0 group-hover:scale-125 group-hover:-translate-y-[6vw] ${hoverIndent} group-hover:opacity-100`}
       >
-        <div className="bg-black w-full h-[12vw] pointer-events-none">
+        <div className="bg-black w-full h-[12vw]">
           {showVideo && !isMobile && (
             <ReactPlayer
               url={content.video}

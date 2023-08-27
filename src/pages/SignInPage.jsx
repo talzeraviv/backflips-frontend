@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import logo from "../assets/logo.svg";
 import Input from "../Components/input/Input";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ export const Signin = () => {
 
   const [variant, setVariant] = useState("login");
 
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const submitHandler = async () => {
     try {
@@ -25,7 +25,7 @@ export const Signin = () => {
       });
       console.log(data);
       await ctxDispatch({ type: USER_SIGNIN, payload: data });
-      Navigate("/");
+      navigate("/");
     } catch (error) {
       console.log(error.message);
     }
