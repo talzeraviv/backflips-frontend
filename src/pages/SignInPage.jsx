@@ -6,7 +6,7 @@ import { Store } from "../Context/StoreProvider";
 import axios from "axios";
 import { USER_SIGNIN } from "../Reducers/Actions";
 
-export const Signin = () => {
+export const SignInPage = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
 
@@ -80,4 +80,4 @@ export const Signin = () => {
   );
 };
 
-export default Signin;
+export default SignInPage;

@@ -67,9 +67,9 @@ const Navbar = () => {
         <img className="h-4 lg:h-7" src={logo} alt="" />
 
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
-          <NavbarItem label="Home" />
-          <NavbarItem label="Series" />
-          <NavbarItem label="Movies" />
+          <NavbarItem label="Home" redirect={() => navigate("/")} />
+          <NavbarItem label="Series" redirect={() => navigate("/Series")} />
+          <NavbarItem label="Movies" redirect={() => navigate("/Movies")} />
         </div>
 
         <div

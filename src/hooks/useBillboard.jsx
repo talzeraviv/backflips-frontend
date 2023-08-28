@@ -1,4 +1,3 @@
-import React from "react";
 import fetcher from "../libs/Fetcher";
 import useSWR from "swr";
 
