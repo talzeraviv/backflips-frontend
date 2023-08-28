@@ -7,7 +7,16 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
   const isMobile = window.innerWidth <= 640;
 
   const handleMouseEnter = () => setShowVideo(true);
-  const handleMouseLeave = () => setShowVideo(false);
+  const handleMouseLeave = () => {
+    setShowVideo(false);
+    setPrevImgOpacity(100);
+  };
+
+  const [prevImgOpacity, setPrevImgOpacity] = useState(100);
+
+  const hideImageOnPlayHandler = () => {
+    setPrevImgOpacity(0);
+  };
 
   const [rating, setRating] = useState(0); // Initialize with 0 or a default value
   // Calculate the rating when the component mounts
@@ -27,7 +36,7 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
 
   return (
     <div
-      className="group bg-zinc-900 relative h-[10vw]"
+      className="group bg-zinc-900 relative w-full h-[10vw]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -37,9 +46,16 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
         alt={content.title}
       />
       <div
-        className={`absolute opacity-0 top-0 transition duration-200 z-10 shadow-md invisible sm:visible delay-300 w-full scale-0 group-hover:scale-125 group-hover:-translate-y-[6vw] ${hoverIndent} group-hover:opacity-100`}
+        className={`absolute opacity-0 top-0 transition duration-200 z-10 shadow-md invisible sm:visible delay-300 w-full h-full scale-0 group-hover:scale-125 group-hover:-translate-y-[6vw] ${hoverIndent} group-hover:opacity-100`}
       >
-        <div className="bg-black w-full h-[12vw]">
+        <div className="w-full h-full">
+          <img
+            className={`absolute inset-0 object-cover h-full w-full ${
+              showVideo ? "transition" : ""
+            } opacity-${prevImgOpacity}`}
+            src={content.imgThumb}
+            alt=""
+          />
           {showVideo && !isMobile && (
             <ReactPlayer
               url={content.video}
@@ -48,16 +64,17 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
               playing
               width="100%"
               height="100%"
+              onPlay={hideImageOnPlayHandler}
             />
           )}
         </div>
-        <div className="z-10 bg-zinc-800 p-2 lg:p-4 absolute w-full transition shadow-md rounded-b-md">
-          <div className="flex flex-row items-center gap-3">
+        <div className="z-10 flex flex-col bg-zinc-800 gap-1 p-2 lg:p-4 absolute w-full transition shadow-md rounded-b-md">
+          <div className="flex flex-row items-center">
             <div
-              className="cursor-pointer my-1 w-6 h-6 lg:w-10 lg:h-10 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 text-black"
+              className="cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 text-black gap-3"
               onClick={() => {}}
             >
-              <BsFillPlayFill size={30} />
+              <BsFillPlayFill size={25} />
             </div>
           </div>
 

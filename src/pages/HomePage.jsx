@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Navbar from "../Components/Navbar/navbar";
+import Navbar from "../Components/Navbar/Navbar";
 import Billboard from "../Components/Billboard/Billboard";
 import FeaturedContentCarousel from "../Components/FeaturedContentCarousel/FeaturedContentCarousel";
 import useFeaturedContent from "../hooks/useFeaturedContent";

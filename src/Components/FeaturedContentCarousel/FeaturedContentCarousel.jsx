@@ -10,8 +10,8 @@ import "swiper/css/navigation";
 import "swiper/css";
 
 const FeaturedContentCarousel = ({ data }) => {
-  const SLIDES_PER_GROUP = 5;
-  const SLIDES_PER_VIEW = 5;
+  const SLIDES_PER_GROUP = 4;
+  const SLIDES_PER_VIEW = 4;
 
   if (!data) {
     return null;

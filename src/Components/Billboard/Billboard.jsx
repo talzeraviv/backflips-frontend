@@ -25,13 +25,14 @@ const Billboard = () => {
         muted
         disablePictureInPicture
         playing
+        loop
         controls={false}
         url={data?.video}
         alt={data?.title}
         height={"100%"}
         width={"100%"}
       />
-      <div className="absolute inset-0 bg-gradient-to-r w-3/4 from-black opacity-100"></div>
+      <div className="absolute inset-0 bg-gradient-to-r w-3/4 from-black opacity-80"></div>
       <div className="absolute inset-0 flex flex-col justify-end w-1/2 px-12 py-16 gap-4 text-white">
         <div
           className={`transition-transform duration-[800ms] ${titlePosition}`}
