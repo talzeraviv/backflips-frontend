@@ -27,7 +27,7 @@ const HomePage = () => {
   return (
     <>
       <Navbar />
-      <Billboard />
+      <Billboard type="random" />
       <RenderContent data={data} error={error} isLoading={isLoading} />
     </>
   );

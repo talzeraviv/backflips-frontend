@@ -2,8 +2,8 @@ import React from "react";
 import fetcher from "../libs/Fetcher";
 import useSWR from "swr";
 
-const useBillboard = () => {
-  const { data, error, isLoading } = useSWR("/content/random/", fetcher);
+const useBillboard = (type) => {
+  const { data, error, isLoading } = useSWR(`/content/${type}`, fetcher);
   return {
     data,
     error,

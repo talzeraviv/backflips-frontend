@@ -3,6 +3,7 @@ import NavbarItem from "../NavbarItem/NavbarItem";
 import { BsChevronDown, BsSearch, BsBell } from "react-icons/bs";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import AccountMenu from "../AccountMenu/AccountMenu";
+import { useNavigate } from "react-router-dom";
 
 import logo from "./../../assets/logo.svg";
 import userPhoto from "./../../assets/BlueNetflix.jpg";
@@ -14,6 +15,8 @@ const Navbar = () => {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [ShowBackground, setShowBackground] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
+
+  const navigate = useNavigate();
 
   const searchHandler = () => {
     setSearchActive(!searchActive);
@@ -90,7 +93,9 @@ const Navbar = () => {
             />
             <input
               type="text"
-              onChange={() => {}}
+              onChange={() => {
+                navigate("/search");
+              }}
               className={`bg-black outline outline-1 appearance-none pl-8 py-1 pr-2 outline-white w-full transition-all text-white text-sm ${
                 searchActive ? "visible" : "invisible pointer-events-none"
               }`}

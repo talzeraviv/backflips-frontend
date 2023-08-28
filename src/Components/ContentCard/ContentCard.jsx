@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BsFillPlayFill } from "react-icons/bs";
 import ReactPlayer from "react-player/youtube";
+import { GoMute, GoUnmute } from "react-icons/go";
 
 const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
   const [showVideo, setShowVideo] = useState(false);
@@ -17,6 +18,8 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
   const hideImageOnPlayHandler = () => {
     setPrevImgOpacity(0);
   };
+
+  const [muted, setMuted] = useState(true);
 
   const [rating, setRating] = useState(0); // Initialize with 0 or a default value
   // Calculate the rating when the component mounts
@@ -57,15 +60,26 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
             alt=""
           />
           {showVideo && !isMobile && (
-            <ReactPlayer
-              url={content.video}
-              controls={false}
-              disablePictureInPicture={true}
-              playing
-              width="100%"
-              height="100%"
-              onPlay={hideImageOnPlayHandler}
-            />
+            <>
+              <ReactPlayer
+                url={content.video}
+                controls={false}
+                disablePictureInPicture={true}
+                playing
+                width="100%"
+                height="100%"
+                onPlay={hideImageOnPlayHandler}
+                muted={muted}
+                volume={0.3}
+                loop={true}
+              />
+              <button
+                className="absolute flex items-center justify-center left-0 bottom-0 cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full transition hover:bg-neutral-300 text-black lg:ml-4 ml-2 mb-2"
+                onClick={() => setMuted(!muted)}
+              >
+                {muted ? <GoMute size={25} /> : <GoUnmute size={25} />}
+              </button>
+            </>
           )}
         </div>
         <div className="z-10 flex flex-col bg-zinc-800 gap-1 p-2 lg:p-4 absolute w-full transition shadow-md rounded-b-md">
