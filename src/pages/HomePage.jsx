@@ -15,7 +15,7 @@ const HomePage = () => {
   const Navigate = useNavigate();
 
   // Fetching of data from the useFeaturedContent hook (SWR)
-  const { data, error, isLoading } = useFeaturedContent("All");
+  const { data, error, isLoading } = useFeaturedContent("all");
 
   // Redirecting users that haven't signed in yet.
   useEffect(() => {
@@ -27,7 +27,7 @@ const HomePage = () => {
   return (
     <>
       <Navbar />
-      <Billboard type="random" />
+      <Billboard type="all" />
       <RenderContent data={data} error={error} isLoading={isLoading} />
     </>
   );

@@ -25,7 +25,7 @@ const SeriesPage = () => {
   return (
     <>
       <Navbar />
-      <Billboard type="series" />
+      <Billboard type="Series" />
       <RenderContent data={data} error={error} isLoading={isLoading} />
     </>
   );

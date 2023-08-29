@@ -18,7 +18,9 @@ const Billboard = ({ type }) => {
       setDescriptionOpacity("lg:opacity-100");
     }, 3000); // Change this to the desired delay in milliseconds
 
-    return () => clearTimeout(timeout); // Clear the timeout on unmount
+    return () => {
+      clearTimeout(timeout);
+    }; // Clear the timeout on unmount
   }, []);
 
   return (
