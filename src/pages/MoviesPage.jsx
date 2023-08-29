@@ -13,7 +13,7 @@ const MoviesPage = () => {
   const Navigate = useNavigate();
 
   // Fetching of data from the useFeaturedContent hook (SWR)
-  const { data, error, isLoading } = useFeaturedContent("movies");
+  const { data, error, isLoading } = useFeaturedContent("Movie");
 
   // Redirecting users that haven't signed in yet. (UNMARKED FOR NOW)
   useEffect(() => {

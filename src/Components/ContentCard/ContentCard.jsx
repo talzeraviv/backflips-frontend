@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BsFillPlayFill } from "react-icons/bs";
 import ReactPlayer from "react-player/youtube";
 import { GoMute, GoUnmute } from "react-icons/go";
+import { useNavigate } from "react-router-dom";
 
 const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
   const [showVideo, setShowVideo] = useState(false);
@@ -17,6 +18,12 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
 
   const hideImageOnPlayHandler = () => {
     setPrevImgOpacity(0);
+  };
+
+  const navigate = useNavigate();
+
+  const redirectToWatchPage = () => {
+    navigate(`/watch?id=${content._id}`);
   };
 
   const [muted, setMuted] = useState(true);
@@ -64,7 +71,7 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
               <ReactPlayer
                 url={content.video}
                 controls={false}
-                disablePictureInPicture={true}
+                pip={false}
                 playing
                 width="100%"
                 height="100%"
@@ -86,7 +93,7 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
           <div className="flex flex-row items-center">
             <div
               className="cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 text-black gap-3"
-              onClick={() => {}}
+              onClick={redirectToWatchPage}
             >
               <BsFillPlayFill size={25} />
             </div>

@@ -13,7 +13,7 @@ const SeriesPage = () => {
   const Navigate = useNavigate();
 
   // Fetching of data from the useFeaturedContent hook (SWR)
-  const { data, error, isLoading } = useFeaturedContent("series");
+  const { data, error, isLoading } = useFeaturedContent("Serie");
 
   // Redirecting users that haven't signed in yet. (UNMARKED FOR NOW)
   useEffect(() => {

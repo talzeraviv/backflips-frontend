@@ -68,8 +68,8 @@ const Navbar = () => {
 
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
           <NavbarItem label="Home" redirect={() => navigate("/")} />
-          <NavbarItem label="Series" redirect={() => navigate("/Series")} />
-          <NavbarItem label="Movies" redirect={() => navigate("/Movies")} />
+          <NavbarItem label="Series" redirect={() => navigate("/series")} />
+          <NavbarItem label="Movies" redirect={() => navigate("/movies")} />
         </div>
 
         <div

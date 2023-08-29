@@ -15,9 +15,9 @@ const HomePage = () => {
   const Navigate = useNavigate();
 
   // Fetching of data from the useFeaturedContent hook (SWR)
-  const { data, error, isLoading } = useFeaturedContent();
+  const { data, error, isLoading } = useFeaturedContent("All");
 
-  // Redirecting users that haven't signed in yet. (UNMARKED FOR NOW)
+  // Redirecting users that haven't signed in yet.
   useEffect(() => {
     if (!userInfo) {
       Navigate("/signin");
