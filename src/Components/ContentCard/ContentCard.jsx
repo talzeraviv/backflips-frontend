@@ -77,7 +77,6 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
                 height="100%"
                 onPlay={hideImageOnPlayHandler}
                 muted={muted}
-                volume={0.3}
                 loop={true}
               />
               <button

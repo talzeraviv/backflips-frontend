@@ -7,10 +7,12 @@ import SearchPage from "./pages/SearchPage";
 import MoviesPage from "./pages/MoviesPage";
 import SeriesPage from "./pages/SeriesPage";
 import ContentPlayerPage from "./pages/ContentPlayerPage";
+import Navbar from "./Components/Navbar/Navbar";
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signin" element={<SignInPage />} />

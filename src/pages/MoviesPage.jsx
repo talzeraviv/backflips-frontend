@@ -24,7 +24,6 @@ const MoviesPage = () => {
 
   return (
     <>
-      <Navbar />
       <Billboard type="Movies" />
       <RenderContent data={data} error={error} isLoading={isLoading} />
     </>

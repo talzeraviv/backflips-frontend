@@ -3,7 +3,7 @@ import NavbarItem from "../NavbarItem/NavbarItem";
 import { BsChevronDown, BsSearch, BsBell } from "react-icons/bs";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import AccountMenu from "../AccountMenu/AccountMenu";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import logo from "./../../assets/logo.svg";
 import userPhoto from "./../../assets/BlueNetflix.jpg";
@@ -15,11 +15,26 @@ const Navbar = () => {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [ShowBackground, setShowBackground] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
+  const [previousUrl, setPreviousUrl] = useState("");
 
+  const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const searchHandler = () => {
     setSearchActive(!searchActive);
+  };
+
+  const onChangeHandler = (e) => {
+    if (e.target.value === "") {
+      navigate(previousUrl);
+      setPreviousUrl("");
+      console.log("Empty");
+    } else {
+      if (pathname !== "/search") {
+        setPreviousUrl(pathname);
+      }
+      navigate(`/search?q=${e.target.value}`);
+    }
   };
 
   useEffect(() => {
@@ -40,6 +55,14 @@ const Navbar = () => {
   const toggleAccountMenu = useCallback(() => {
     setShowAccountMenu((current) => !current);
   }, []);
+
+  if (
+    pathname === "/signin" ||
+    pathname === "/signup" ||
+    pathname === "/register" ||
+    pathname === "/watch"
+  )
+    return null;
 
   return (
     <nav className="w-full fixed z-20">
@@ -89,9 +112,7 @@ const Navbar = () => {
             />
             <input
               type="text"
-              onChange={() => {
-                navigate("/search");
-              }}
+              onChange={onChangeHandler}
               className={`bg-black outline outline-1 appearance-none pl-8 py-1 pr-2 outline-white w-full transition-all text-white text-sm ${
                 searchActive ? "visible" : "invisible pointer-events-none"
               }`}
