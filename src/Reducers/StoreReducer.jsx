@@ -1,4 +1,4 @@
-import { USER_SIGNIN, USER_SIGNOUT } from "./Actions";
+import { USER_SIGNIN, USER_SIGNOUT, ADD_TO_FAVORITES } from "./Actions";
 
 export const StoreReducer = (state, { type, payload }) => {
   switch (type) {
@@ -9,6 +9,10 @@ export const StoreReducer = (state, { type, payload }) => {
     case USER_SIGNOUT: {
       localStorage.removeItem("userInfo");
       return { ...state, userInfo: null };
+    }
+    case ADD_TO_FAVORITES: {
+      localStorage.setItem("userFavorites", JSON.stringify(payload));
+      return { ...state, userFavorites: payload };
     }
     default:
       return state;

@@ -116,7 +116,7 @@ const Navbar = () => {
               className={`bg-black outline outline-1 appearance-none pl-8 py-1 pr-2 outline-white w-full transition-all text-white text-sm ${
                 searchActive ? "visible" : "invisible pointer-events-none"
               }`}
-              placeholder="Titles, people, genres"
+              placeholder="Search Titles..."
             />
           </div>
           <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
