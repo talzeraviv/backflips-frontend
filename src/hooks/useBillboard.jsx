@@ -7,6 +7,7 @@ const useBillboard = (type) => {
     revalidateOnReconnect: false, // Disable revalidation on reconnect
     revalidateIfStale: false,
   });
+
   return {
     data,
     error,

@@ -7,6 +7,7 @@ const useFavourites = () => {
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
   });
+
   return {
     data,
     error,

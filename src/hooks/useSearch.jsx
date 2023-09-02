@@ -6,6 +6,7 @@ const useSearch = (query) => {
     `/content/search?q=${query}`,
     fetcher
   );
+
   return {
     data,
     error,

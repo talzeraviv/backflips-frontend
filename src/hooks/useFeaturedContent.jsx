@@ -6,6 +6,7 @@ const useFeaturedContent = (type) => {
     `/content/featured/${type}`,
     fetcher
   );
+
   return {
     data,
     error,

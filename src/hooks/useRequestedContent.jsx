@@ -6,6 +6,7 @@ const useRequestedContent = (type) => {
     `/content/watch?id=${type}`,
     fetcher
   );
+
   return {
     data,
     error,
