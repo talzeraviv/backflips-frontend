@@ -1,10 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BsFillPlayFill } from "react-icons/bs";
 import ReactPlayer from "react-player/youtube";
 import { GoMute, GoUnmute } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
+import { Store } from "../../Context/StoreProvider";
 
 const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
+  const { state, dispatch } = useContext(Store);
+  const { isMuted } = state;
+
+  const toggleMute = () => {
+    dispatch({ type: "TOGGLE_MUTE" });
+  };
+
   const [showVideo, setShowVideo] = useState(false);
   const isMobile = window.innerWidth <= 640;
 
@@ -26,13 +34,9 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
     navigate(`/watch?id=${content._id}`);
   };
 
-  const [muted, setMuted] = useState(true);
-
-  const [rating, setRating] = useState(0); // Initialize with 0 or a default value
-  // Calculate the rating when the component mounts
+  const [rating, setRating] = useState(0);
   useEffect(() => {
-    // Use your rating calculation logic here, for example:
-    const calculatedRating = 90 + Math.floor(Math.random() * 10); // Random rating between 0 and 100
+    const calculatedRating = 90 + Math.floor(Math.random() * 10);
     setRating(calculatedRating);
   }, []);
 
@@ -76,14 +80,14 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
                 width="100%"
                 height="100%"
                 onPlay={hideImageOnPlayHandler}
-                muted={muted}
+                muted={isMuted}
                 loop={true}
               />
               <button
                 className="absolute flex items-center justify-center left-0 bottom-0 cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full transition hover:bg-neutral-300 text-black lg:ml-4 ml-2 mb-2"
-                onClick={() => setMuted(!muted)}
+                onClick={toggleMute}
               >
-                {muted ? <GoMute size={25} /> : <GoUnmute size={25} />}
+                {isMuted ? <GoMute size={25} /> : <GoUnmute size={25} />}
               </button>
             </>
           )}
