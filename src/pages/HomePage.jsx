@@ -1,10 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Navbar from "../Components/Navbar/Navbar";
 import Billboard from "../Components/Billboard/Billboard";
 import FeaturedContentCarousel from "../Components/FeaturedContentCarousel/FeaturedContentCarousel";
+import ContentCarousel from "../Components/ContentCarousel/ContentCarousel";
+
 import useFeaturedContent from "../hooks/useFeaturedContent";
+import useFavourites from "../hooks/useFavourites";
 
 import { Store } from "../Context/StoreProvider";
 
@@ -14,8 +16,18 @@ const HomePage = () => {
   const { userInfo } = state;
   const Navigate = useNavigate();
 
-  // Fetching of data from the useFeaturedContent hook (SWR)
-  const { data, error, isLoading } = useFeaturedContent("all");
+  // Fetching of data from the hooks (SWR)
+  const {
+    data: featuredData,
+    error: featuredError,
+    isLoading: featuredIsLoading,
+  } = useFeaturedContent("all");
+
+  const {
+    data: favoritesData,
+    error: favoritesError,
+    isLoading: favoritesIsLoading,
+  } = useFavourites();
 
   // Redirecting users that haven't signed in yet.
   useEffect(() => {
@@ -27,12 +39,21 @@ const HomePage = () => {
   return (
     <>
       <Billboard type="all" />
-      <RenderContent data={data} error={error} isLoading={isLoading} />
+      <RenderFavouriteContent
+        data={favoritesData}
+        error={favoritesError}
+        isLoading={favoritesIsLoading}
+      />
+      <RenderFeaturedContent
+        data={featuredData}
+        error={featuredError}
+        isLoading={featuredIsLoading}
+      />
     </>
   );
 };
 
-const RenderContent = ({ data, error, isLoading }) => {
+const RenderFeaturedContent = ({ data, error, isLoading }) => {
   if (isLoading) {
     return <h1>Loading content...</h1>;
   }
@@ -41,9 +62,31 @@ const RenderContent = ({ data, error, isLoading }) => {
     return <h1>Error... {error.message}</h1>;
   }
 
-  return data.map((content) => (
-    <FeaturedContentCarousel key={content._id} data={content} />
+  return data.map((list) => (
+    <ContentCarousel
+      key={list._id}
+      data={list.contentList}
+      listTitle={list.name}
+    />
   ));
+};
+
+const RenderFavouriteContent = ({ data, error, isLoading }) => {
+  if (isLoading) {
+    return <h1>Loading content...</h1>;
+  }
+
+  if (error) {
+    return <h1>Error... {error.message}</h1>;
+  }
+
+  console.log(data);
+
+  return data.content.length ? (
+    <ContentCarousel key={data._id} data={data.content} listTitle={"My List"} />
+  ) : (
+    ""
+  );
 };
 
 export default HomePage;
