@@ -9,6 +9,11 @@ const Billboard = ({ type }) => {
   const { data, error, isLoading } = useBillboard(type);
   const [titlePosition, setTitlePosition] = useState("lg:translate-y-40");
   const [descriptionOpacity, setDescriptionOpacity] = useState("lg:opacity-0");
+  const [placeholder, setPlaceholder] = useState(true);
+
+  const placeholderHandler = () => {
+    setPlaceholder(false);
+  };
 
   const navigate = useNavigate();
 
@@ -24,24 +29,24 @@ const Billboard = ({ type }) => {
   }, []);
 
   return (
-    <div className="relative h-[120vh]">
-      <div className="absolute bottom-0 w-full h-[40vh] bg-gradient-to-b from-transparent to-zinc-900 z-10" />
-      <div className="absolute inset-0">
-        <ReactPlayer
-          className="object-cover w-full h-full pointer-events-none"
-          muted
-          disablePictureInPicture
-          playing
-          loop
-          controls={false}
-          url={data?.video}
-          alt={data?.title}
-          width={"100%"}
-          height={"100%"}
-        />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-r w-3/4 from-black opacity-80"></div>
-      <div className="absolute inset-0 bottom-32 flex flex-col justify-center w-1/2 px-12 gap-4 text-white">
+    <div className="relative h-[56.25vw]">
+      <ReactPlayer
+        className="pointer-events-none"
+        muted
+        disablePictureInPicture
+        playing
+        loop
+        controls={false}
+        url={data?.video}
+        alt={data?.title}
+        width={"100%"}
+        height={"100%"}
+        onPlay={placeholderHandler}
+      />
+      <div className="bg-white"></div>
+      <div className="absolute bottom-0 w-full h-[40vw] bg-gradient-to-b from-transparent to-zinc-900 z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-r w-1/2 from-black opacity-100"></div>
+      <div className="absolute inset-0 flex flex-col justify-center w-1/2 px-12 gap-4 text-white z-[2]">
         <div
           className={`transition-transform duration-[800ms] ${titlePosition}`}
         >

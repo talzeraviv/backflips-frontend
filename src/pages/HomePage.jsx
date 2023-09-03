@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Billboard from "../Components/Billboard/Billboard";
-import FeaturedContentCarousel from "../Components/FeaturedContentCarousel/FeaturedContentCarousel";
-import ContentCarousel from "../Components/ContentCarousel/ContentCarousel";
+import RenderContent from "../Components/RenderContent/RenderContent";
 
 import useFeaturedContent from "../hooks/useFeaturedContent";
 import useFavourites from "../hooks/useFavourites";
@@ -12,7 +11,7 @@ import { Store } from "../Context/StoreProvider";
 
 const HomePage = () => {
   // My context store is responsible for extracting user information from the Sign In/Sign Up page.
-  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { state } = useContext(Store);
   const { userInfo } = state;
   const Navigate = useNavigate();
 
@@ -40,35 +39,17 @@ const HomePage = () => {
     <>
       <Billboard type="all" />
       <RenderContent
-        data={favoritesData}
         error={favoritesError}
         isLoading={favoritesIsLoading}
+        data={favoritesData}
       />
       <RenderContent
-        data={featuredData}
         error={featuredError}
         isLoading={featuredIsLoading}
+        data={featuredData}
       />
     </>
   );
-};
-
-const RenderContent = ({ data, error, isLoading }) => {
-  if (isLoading) {
-    return <h1>Loading content...</h1>;
-  }
-
-  if (error) {
-    return <h1>Error... {error.message}</h1>;
-  }
-
-  return data.map((list) => (
-    <ContentCarousel
-      key={list._id}
-      data={list.contentList}
-      listTitle={list.name}
-    />
-  ));
 };
 
 export default HomePage;

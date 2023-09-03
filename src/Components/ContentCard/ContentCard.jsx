@@ -50,12 +50,12 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
 
   return (
     <div
-      className="group bg-zinc-900 relative w-full h-[8vw]"
+      className="group bg-zinc-900 relative h-[8.5vw]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <img
-        className="cursor-pointer object-cover transition shadow-xl rounded-md group-hover:opacity-90 sm:group-hover:opacity-0 delay-300 w-full h-full"
+        className="cursor-pointer object-cover transition shadow-xl rounded-sm group-hover:opacity-90 sm:group-hover:opacity-0 delay-300 w-full h-full"
         src={content.imgThumb}
         alt={content.title}
       />
@@ -87,9 +87,7 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
                 className="absolute flex items-center justify-center left-0 bottom-0 cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full transition hover:bg-neutral-300 text-black lg:ml-4 ml-2 mb-2"
                 onClick={toggleMute}
               >
-                <div>
-                  {isMuted ? <GoMute size={25} /> : <GoUnmute size={25} />}
-                </div>
+                {isMuted ? <GoMute size={25} /> : <GoUnmute size={25} />}
               </button>
             </>
           )}
