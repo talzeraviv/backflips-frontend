@@ -24,25 +24,28 @@ const Billboard = ({ type }) => {
   }, []);
 
   return (
-    <div className="relative sm:h-[42vw] h-[60vw]">
-      <ReactPlayer
-        className="absolute object-cover pointer-events-none"
-        muted
-        disablePictureInPicture
-        playing
-        loop
-        controls={false}
-        url={data?.video}
-        alt={data?.title}
-        height={"100%"}
-        width={"100%"}
-      />
+    <div className="relative h-[120vh]">
+      <div className="absolute bottom-0 w-full h-[40vh] bg-gradient-to-b from-transparent to-zinc-900 z-10" />
+      <div className="absolute inset-0">
+        <ReactPlayer
+          className="object-cover w-full h-full pointer-events-none"
+          muted
+          disablePictureInPicture
+          playing
+          loop
+          controls={false}
+          url={data?.video}
+          alt={data?.title}
+          width={"100%"}
+          height={"100%"}
+        />
+      </div>
       <div className="absolute inset-0 bg-gradient-to-r w-3/4 from-black opacity-80"></div>
-      <div className="absolute inset-0 flex flex-col justify-end w-1/2 px-12 py-16 gap-4 text-white">
+      <div className="absolute inset-0 bottom-32 flex flex-col justify-center w-1/2 px-12 gap-4 text-white">
         <div
           className={`transition-transform duration-[800ms] ${titlePosition}`}
         >
-          <img src={data?.imgTitle} alt={data?.title} width={400} />
+          <img src={data?.imgTitle} alt={data?.title} width={300} />
         </div>
 
         <div

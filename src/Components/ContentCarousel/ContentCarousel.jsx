@@ -11,15 +11,15 @@ import "swiper/css";
 
 // Expects to receive an array of content.
 const ContentCarousel = ({ data, listTitle }) => {
-  const SLIDES_PER_GROUP = 4;
-  const SLIDES_PER_VIEW = 4;
+  const SLIDES_PER_GROUP = 6;
+  const SLIDES_PER_VIEW = 6;
 
   if (!data) {
     return null;
   }
 
   return (
-    <div className="text-white px-4 py-4 md:px-12">
+    <div className="relative text-white px-4 py-4 md:px-12 -top-[32vh] z-10">
       {/* The title of the featured content list */}
       <p className="text-base md:text-xl lg:text-2xl font-semibold mb-2">
         {listTitle}

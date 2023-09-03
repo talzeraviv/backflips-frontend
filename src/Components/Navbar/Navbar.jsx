@@ -70,7 +70,7 @@ const Navbar = () => {
         className={`
         px-4
         md:px-16
-        py-6
+        py-4
         flex
         flex-row
         items-center

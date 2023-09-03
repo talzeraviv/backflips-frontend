@@ -39,12 +39,12 @@ const HomePage = () => {
   return (
     <>
       <Billboard type="all" />
-      <RenderFavouriteContent
+      <RenderContent
         data={favoritesData}
         error={favoritesError}
         isLoading={favoritesIsLoading}
       />
-      <RenderFeaturedContent
+      <RenderContent
         data={featuredData}
         error={featuredError}
         isLoading={featuredIsLoading}
@@ -53,7 +53,7 @@ const HomePage = () => {
   );
 };
 
-const RenderFeaturedContent = ({ data, error, isLoading }) => {
+const RenderContent = ({ data, error, isLoading }) => {
   if (isLoading) {
     return <h1>Loading content...</h1>;
   }
@@ -69,24 +69,6 @@ const RenderFeaturedContent = ({ data, error, isLoading }) => {
       listTitle={list.name}
     />
   ));
-};
-
-const RenderFavouriteContent = ({ data, error, isLoading }) => {
-  if (isLoading) {
-    return <h1>Loading content...</h1>;
-  }
-
-  if (error) {
-    return <h1>Error... {error.message}</h1>;
-  }
-
-  console.log(data);
-
-  return data.content.length ? (
-    <ContentCarousel key={data._id} data={data.content} listTitle={"My List"} />
-  ) : (
-    ""
-  );
 };
 
 export default HomePage;

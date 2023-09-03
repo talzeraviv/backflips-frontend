@@ -7,7 +7,7 @@ const initState = {
   userInfo: localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
     : null,
-  isMuted: false,
+  isMuted: true,
 };
 
 export function StoreProvider(props) {
