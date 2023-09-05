@@ -28,9 +28,9 @@ function MobileMenu({ visible }) {
         </div>
         <div
           className="px-3 text-center text-white hover:underline"
-          onClick={() => navigate("/favorites")}
+          onClick={() => navigate("/mylist")}
         >
-          My Favourites
+          My List
         </div>
       </div>
     </div>

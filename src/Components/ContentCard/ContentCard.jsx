@@ -4,6 +4,7 @@ import ReactPlayer from "react-player/youtube";
 import { GoMute, GoUnmute } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../../Context/StoreProvider";
+import FavouriteButton from "../FavouriteButton/FavouriteButton";
 
 const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
   const { state, dispatch } = useContext(Store);
@@ -99,6 +100,9 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
               onClick={redirectToWatchPage}
             >
               <BsFillPlayFill size={25} />
+            </div>
+            <div>
+              <FavouriteButton />
             </div>
           </div>
 

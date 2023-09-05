@@ -34,7 +34,11 @@ const SearchPage = () => {
           </p>
           <div className="grid grid-cols-4 gap-4 mx-auto">
             {data.contents.map((content) => (
-              <ContentCard content={content} className="max-w-xs" />
+              <ContentCard
+                key={content._id}
+                content={content}
+                className="max-w-xs"
+              />
             ))}
           </div>
         </div>

@@ -43,20 +43,19 @@ const Billboard = ({ type }) => {
         height={"100%"}
         onPlay={placeholderHandler}
       />
-      <div className="bg-white"></div>
-      <div className="absolute bottom-0 w-full h-[40vw] bg-gradient-to-b from-transparent to-zinc-900 z-[1]" />
+      <div className="absolute bottom-0 w-full h-[40vh] bg-gradient-to-b from-transparent to-zinc-900 z-[1]" />
       <div className="absolute inset-0 bg-gradient-to-r w-1/2 from-black opacity-100"></div>
-      <div className="absolute inset-0 flex flex-col justify-center w-1/2 px-12 gap-4 text-white z-[2]">
+      <div className="absolute inset-0 flex flex-col justify-center w-1/3 px-12 gap-4 text-white z-[2]">
         <div
           className={`transition-transform duration-[800ms] ${titlePosition}`}
         >
-          <img src={data?.imgTitle} alt={data?.title} width={300} />
+          <img src={data?.imgTitle} alt={data?.title} width={400} />
         </div>
 
         <div
           className={`transition-opacity duration-[2300ms] hidden md:visible md:block md:text-sm lg:text-base  ${descriptionOpacity}`}
         >
-          <p className="line-clamp-4">{data?.description}</p>
+          <p className="line-clamp-3">{data?.description}</p>
         </div>
 
         <div

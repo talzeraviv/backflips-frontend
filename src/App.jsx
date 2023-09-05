@@ -8,6 +8,7 @@ import MoviesPage from "./pages/MoviesPage";
 import SeriesPage from "./pages/SeriesPage";
 import ContentPlayerPage from "./pages/ContentPlayerPage";
 import Navbar from "./Components/Navbar/Navbar";
+import MyListPage from "./pages/MyListPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/movies" element={<MoviesPage />} />
         <Route path="/series" element={<SeriesPage />} />
+        <Route path="/mylist" element={<MyListPage />} />
         <Route path="/watch" element={<ContentPlayerPage />} />
       </Routes>
     </BrowserRouter>

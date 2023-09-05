@@ -1,10 +1,15 @@
-import { useState, React } from "react";
+import { useState, useContext, React } from "react";
 import logo from "../assets/logo.svg";
 import Input from "../Components/input/Input";
 import { MdArrowForwardIos } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { Store } from "../Context/StoreProvider";
+import axios from "axios";
+import { USER_SIGNIN } from "../Reducers/Actions";
 
 const SignUpPage = () => {
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -12,20 +17,30 @@ const SignUpPage = () => {
   const [step, setStep] = useState("email");
   const [error, setError] = useState(false);
 
-  const nextStep = () => {
+  const emailRegex =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  const nextStep = async () => {
     if (step == "email") {
       if (!error && email != "") {
         setStep("password");
       }
     } else if (step == "password") {
       if (password != "") {
+        const { data } = await axios.post("/users/signup", {
+          email: email,
+          password: password,
+        });
+        console.log(data);
+        await ctxDispatch({ type: USER_SIGNIN, payload: data });
+        navigate("/");
       }
     }
   };
 
   const validEmailHandler = (e) => {
     setEmail(e.target.value);
-    if (/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm.test(email)) {
+    if (emailRegex.test(email)) {
       setError(false);
     } else {
       setError(true);
