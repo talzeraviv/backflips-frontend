@@ -1,8 +1,9 @@
 import {
   USER_SIGNIN,
   USER_SIGNOUT,
-  ADD_TO_FAVORITES,
   TOGGLE_MUTE,
+  ADD_TO_FAVOURITES,
+  REMOVE_FROM_FAVOURITES,
 } from "./Actions";
 
 export const StoreReducer = (state, { type, payload }) => {
@@ -15,8 +16,23 @@ export const StoreReducer = (state, { type, payload }) => {
       localStorage.removeItem("userInfo");
       return { ...state, userInfo: null };
     }
-    case ADD_TO_FAVORITES: {
-      localStorage.setItem("userFavorites", JSON.stringify(payload));
+    case ADD_TO_FAVOURITES: {
+      const updatedMyList = [...state.userInfo.myList, payload];
+      localStorage.setItem(
+        "userInfo",
+        JSON.stringify({ ...state.userInfo, myList: updatedMyList })
+      );
+      return { ...state, userFavorites: payload };
+    }
+    case REMOVE_FROM_FAVOURITES: {
+      const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+      const updatedMyList = userInfo.myList.filter(
+        (item) => item.id !== payload.id
+      );
+      localStorage.setItem(
+        "userInfo",
+        JSON.stringify({ ...userInfo, myList: updatedMyList })
+      );
       return { ...state, userFavorites: payload };
     }
     case TOGGLE_MUTE:

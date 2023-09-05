@@ -22,7 +22,7 @@ const ContentCarousel = ({ data, listTitle }) => {
     <div className="relative text-white px-4 py-4 md:px-12 -top-[30vh] swiper-z-transition">
       {/* The title of the featured content list */}
       <p className="text-base md:text-xl lg:text-2xl font-semibold mb-2">
-        {listTitle}
+        {data.length ? listTitle : undefined}
       </p>
 
       {/* The content carousel */}

@@ -1,8 +1,8 @@
-import fetcher from "../libs/Fetcher";
+import getFetcher from "../libs/Fetcher";
 import useSWR from "swr";
 
 const useFavourites = () => {
-  const { data, error, isLoading, mutate } = useSWR("/users/list", fetcher, {
+  const { data, error, isLoading, mutate } = useSWR("/users/list", getFetcher, {
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
     revalidateIfStale: false,

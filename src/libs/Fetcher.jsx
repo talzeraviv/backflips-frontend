@@ -12,14 +12,35 @@ const createHeaders = () => {
   return {};
 };
 
-const fetcher = async (url) => {
+export const getFetcher = async (url) => {
   try {
     const headers = createHeaders();
     const response = await axios.get(url, headers);
     return response.data;
   } catch (error) {
-    throw new Error("Failed to fetch data");
+    throw new Error("Failed to fetch data.");
   }
 };
 
-export default fetcher;
+export const postFetcher = async (url, body) => {
+  try {
+    const headers = createHeaders();
+    const response = await axios.post(url, body, headers);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to post data.");
+  }
+};
+
+export const deleteFetcher = async (url, params, data) => {
+  try {
+    const headers = createHeaders();
+    const response = await axios.delete(`${url}${params}${data}`, headers);
+
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to delete data." + error);
+  }
+};
+
+export default getFetcher;

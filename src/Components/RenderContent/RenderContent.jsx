@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import ContentCarousel from "../ContentCarousel/ContentCarousel";
+import { Store } from "../../Context/StoreProvider";
 
 const RenderContent = ({ error, isLoading, data }) => {
   if (isLoading) return <h1 className="text-white">Loading...</h1>;

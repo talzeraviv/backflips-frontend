@@ -1,8 +1,8 @@
-import fetcher from "../libs/Fetcher";
+import getFetcher from "../libs/Fetcher";
 import useSWR from "swr";
 
 const useBillboard = (type) => {
-  const { data, error, isLoading } = useSWR(`/content/${type}`, fetcher, {
+  const { data, error, isLoading } = useSWR(`/content/${type}`, getFetcher, {
     revalidateOnFocus: false, // Disable revalidation on focus
     revalidateOnReconnect: false, // Disable revalidation on reconnect
     revalidateIfStale: false,

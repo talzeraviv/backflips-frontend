@@ -1,10 +1,10 @@
-import fetcher from "../libs/Fetcher";
+import getFetcher from "../libs/Fetcher";
 import useSWR from "swr";
 
 const useFeaturedContent = (type) => {
   const { data, error, isLoading } = useSWR(
     `/content/featured/${type}`,
-    fetcher
+    getFetcher
   );
 
   return {

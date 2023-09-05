@@ -9,6 +9,12 @@ import FavouriteButton from "../FavouriteButton/FavouriteButton";
 const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
   const { state, dispatch } = useContext(Store);
   const { isMuted } = state;
+  const { userInfo } = state;
+  const { myList } = userInfo;
+
+  const isFavourite = myList.some(
+    (favContent) => favContent._id === content._id
+  );
 
   const toggleMute = () => {
     dispatch({ type: "TOGGLE_MUTE" });
@@ -101,9 +107,11 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
             >
               <BsFillPlayFill size={25} />
             </div>
-            <div>
-              <FavouriteButton />
-            </div>
+            <FavouriteButton
+              content={content}
+              isFavourite={isFavourite}
+              dispatch={dispatch}
+            />
           </div>
 
           <div className="flex flex-row gap-2 items-center">
