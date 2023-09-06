@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import logo from "../assets/logo.svg";
-import Input from "../Components/input/Input";
+import Input from "../Components/Input/Input";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../Context/StoreProvider";
 import axios from "axios";
