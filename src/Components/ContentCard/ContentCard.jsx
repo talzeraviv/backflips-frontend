@@ -10,7 +10,7 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
   const { state, dispatch } = useContext(Store);
   const { isMuted } = state;
   const { userInfo } = state;
-  const { myList } = userInfo;
+  const myList = userInfo ? userInfo.myList : [];
 
   const isFavourite = myList.some(
     (favContent) => favContent._id === content._id
