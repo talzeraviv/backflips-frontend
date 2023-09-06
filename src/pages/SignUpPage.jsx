@@ -1,6 +1,6 @@
 import { useState, useContext, React } from "react";
 import logo from "../assets/logo.svg";
-import Input from "../Components/input/Input";
+import Input from "../Components/Input/Input";
 import { MdArrowForwardIos } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../Context/StoreProvider";
