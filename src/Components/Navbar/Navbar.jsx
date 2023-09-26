@@ -28,7 +28,6 @@ const Navbar = () => {
     if (e.target.value === "") {
       navigate(previousUrl);
       setPreviousUrl("");
-      console.log("Empty");
     } else {
       if (pathname !== "/search") {
         setPreviousUrl(pathname);

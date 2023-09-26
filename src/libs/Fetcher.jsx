@@ -36,7 +36,6 @@ export const deleteFetcher = async (url, params, data) => {
   try {
     const headers = createHeaders();
     const response = await axios.delete(`${url}${params}${data}`, headers);
-
     return response.data;
   } catch (error) {
     throw new Error("Failed to delete data." + error);

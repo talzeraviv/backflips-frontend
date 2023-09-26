@@ -31,7 +31,6 @@ const SignUpPage = () => {
           email: email,
           password: password,
         });
-        console.log(data);
         await ctxDispatch({ type: USER_SIGNIN, payload: data });
         navigate("/");
       }

@@ -1,34 +1,25 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Billboard from "../Components/Billboard/Billboard";
-import RenderContent from "../Components/RenderContent/RenderContent";
 
 import useFeaturedContent from "../hooks/useFeaturedContent";
-import useFavourites from "../hooks/useFavourites";
 
 import { Store } from "../Context/StoreProvider";
-import RenderMyList from "../Components/RenderMyList/RenderMyList";
+import ContentCarousel from "../Components/ContentCarousel/ContentCarousel";
 
 const HomePage = () => {
   // My context store is responsible for extracting user information from the Sign In/Sign Up page.
   const { state } = useContext(Store);
   const { userInfo } = state;
-  const myList = userInfo?.myList;
   const Navigate = useNavigate();
 
   // Fetching of data from the hooks (SWR)
   const {
-    data: featuredData,
     error: featuredError,
     isLoading: featuredIsLoading,
+    data: featuredData,
   } = useFeaturedContent("all");
-
-  // const {
-  //   data: favouritesData,
-  //   error: favouritesError,
-  //   isLoading: favouritesIsLoading,
-  // } = useFavourites();
 
   // Redirecting users that haven't signed in yet.
   useEffect(() => {
@@ -40,17 +31,19 @@ const HomePage = () => {
   return (
     <>
       <Billboard type="all" />
-      <RenderMyList />
-      {/* <RenderContent
-        error={favouritesError}
-        isLoading={favouritesIsLoading}
-        data={favouritesData}
-      /> */}
-      <RenderContent
-        error={featuredError}
-        isLoading={featuredIsLoading}
-        data={featuredData}
-      />
+      {featuredIsLoading
+        ? "Loading..."
+        : featuredError
+        ? "Error..."
+        : featuredData.map((list) =>
+            list.contentList.length ? (
+              <ContentCarousel
+                key={list._id}
+                data={list.contentList}
+                listTitle={list.name}
+              />
+            ) : null
+          )}
     </>
   );
 };

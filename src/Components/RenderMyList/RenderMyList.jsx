@@ -5,11 +5,11 @@ import { Store } from "../../Context/StoreProvider";
 const RenderMyList = () => {
   const { state } = useContext(Store);
   const { userInfo } = state;
-  const [myList, setMyList] = useState(userInfo?.myList ? userInfo.myList : []);
+  const [myList, setMyList] = useState(userInfo?.myList || []);
 
   useEffect(() => {
     if (userInfo?.myList) setMyList(userInfo.myList);
-  }, [state, userInfo]);
+  }, [state]); // Update the dependency to include myList
 
   return myList ? (
     <ContentCarousel data={myList} listTitle="My List:" />

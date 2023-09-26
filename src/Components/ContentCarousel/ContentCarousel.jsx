@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import ChevronRight from "../../assets/ChevronRight.svg";
 import ChevronLeft from "../../assets/ChevronLeft.svg";
 
 import ContentCard from "../ContentCard/ContentCard";
+import { isEmpty } from "lodash";
 
 import "swiper/css/navigation";
 import "swiper/css";
@@ -14,7 +15,7 @@ const ContentCarousel = ({ data, listTitle }) => {
   const SLIDES_PER_GROUP = 6;
   const SLIDES_PER_VIEW = 6;
 
-  if (!data) {
+  if (isEmpty(data)) {
     return null;
   }
 
@@ -46,7 +47,7 @@ const ContentCarousel = ({ data, listTitle }) => {
 
           return (
             <SwiperSlide
-              key={content._id}
+              key={`${content._id}+(${index})`}
               className="swiper-slide-z-transition"
             >
               <ContentCard

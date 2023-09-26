@@ -23,12 +23,9 @@ export const SignInPage = () => {
         email,
         password,
       });
-      console.log(data);
       await ctxDispatch({ type: USER_SIGNIN, payload: data });
       navigate("/");
-    } catch (error) {
-      console.log(error.message);
-    }
+    } catch (error) {}
   };
 
   return (

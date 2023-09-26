@@ -22,18 +22,21 @@ export const StoreReducer = (state, { type, payload }) => {
         "userInfo",
         JSON.stringify({ ...state.userInfo, myList: updatedMyList })
       );
-      return { ...state, userFavorites: payload };
+      return {
+        ...state,
+        userInfo: { ...state.userInfo, myList: updatedMyList },
+      };
     }
     case REMOVE_FROM_FAVOURITES: {
       const userInfo = JSON.parse(localStorage.getItem("userInfo"));
       const updatedMyList = userInfo.myList.filter(
-        (item) => item.id !== payload.id
+        (item) => item._id !== payload._id
       );
       localStorage.setItem(
         "userInfo",
         JSON.stringify({ ...userInfo, myList: updatedMyList })
       );
-      return { ...state, userFavorites: payload };
+      return { ...state, userInfo: { ...userInfo, myList: updatedMyList } };
     }
     case TOGGLE_MUTE:
       return {

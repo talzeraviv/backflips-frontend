@@ -9,9 +9,7 @@ const SearchPage = () => {
   const [query, setQuery] = useState("");
 
   const { search } = useLocation();
-  console.log(search);
   const searchParams = new URLSearchParams(search);
-  console.log(query);
   const { data, error, isLoading } = useSearch(query);
 
   useEffect(() => {
