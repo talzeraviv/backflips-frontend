@@ -5,7 +5,6 @@ import "./index.css";
 import axios from "axios";
 import { StoreProvider } from "./Context/StoreProvider.jsx";
 
-// axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 axios.defaults.baseURL =
   import.meta.env.VITE_BASE_URL || "http://localhost:5000/api";
 

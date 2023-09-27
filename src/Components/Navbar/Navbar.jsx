@@ -82,7 +82,12 @@ const Navbar = () => {
         }
         `}
       >
-        <img className="h-4 lg:h-7" src={logo} alt="" />
+        <img
+          className="cursor-pointer h-4 lg:h-7"
+          src={logo}
+          alt="Netflix-Logo"
+          onClick={() => navigate("/")}
+        />
 
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
           <NavbarItem label="Home" redirect={() => navigate("/")} />
