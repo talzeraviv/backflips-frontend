@@ -82,7 +82,7 @@ export const SignInPage = () => {
               <p>Username: demo@example.com</p>
               <p>Password: 12345</p>
               <button
-                className="bg-red-600 py-3 text-white rounded-md w-full mt-2 hover:bg-red-700 transition "
+                className="bg-white py-3 bg-opacity-30 rounded-md w-1/2 mt-4 hover:bg-opacity-20 transition m-auto"
                 onClick={autofillCredentials}
               >
                 Autofill
