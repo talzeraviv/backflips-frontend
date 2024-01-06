@@ -8,12 +8,9 @@ import { USER_SIGNIN } from "../Reducers/Actions";
 
 export const SignInPage = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { userInfo } = state;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const [variant, setVariant] = useState("login");
 
   const navigate = useNavigate();
 
@@ -26,6 +23,11 @@ export const SignInPage = () => {
       await ctxDispatch({ type: USER_SIGNIN, payload: data });
       navigate("/");
     } catch (error) {}
+  };
+
+  const autofillCredentials = () => {
+    setEmail("demo@example.com");
+    setPassword("12345");
   };
 
   return (
@@ -60,7 +62,7 @@ export const SignInPage = () => {
             >
               Login
             </button>
-            <p className="text-neutral-500 mt-12">
+            <p className="text-neutral-500 mt-6">
               First time using Netflix?
               <span
                 onClick={() => navigate("/signup")}
@@ -69,6 +71,23 @@ export const SignInPage = () => {
                 Create an account
               </span>
             </p>
+
+            <div className="text-neutral-500 mt-4 text-center justify-center">
+              <span>Welcome to my Netflix clone :)</span>
+              <p>
+                For your convenience, you can use the following demo account:
+              </p>
+            </div>
+            <div className="flex items-start justify-center flex-col text-white mt-4 p-4 outline outline-1 outline-white">
+              <p>Username: demo@example.com</p>
+              <p>Password: 12345</p>
+              <button
+                className="bg-red-600 py-3 text-white rounded-md w-full mt-2 hover:bg-red-700 transition "
+                onClick={autofillCredentials}
+              >
+                Autofill
+              </button>
+            </div>
           </div>
         </div>
       </div>
