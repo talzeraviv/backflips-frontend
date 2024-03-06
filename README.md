@@ -6,10 +6,9 @@
 
 <p align="center">
   Backflips is a Video Streaming Platform modeled after Netflix, created by Tal Zer-Aviv and written in React.js, Express.js and TailWind.css.
-  
 </p>
 
-## Demo
+## 💻 Demo
 ![backflips-demo](https://github.com/talzeraviv/backflips-frontend/assets/106658389/5c7a451a-c555-4e51-8525-133f9d46ad95)
 
 ## Features
@@ -19,8 +18,6 @@ This React based web app incorporates Netflix's core features, such as:
   * Personalized Content Curation
   * Search-As-You-Type Functionality
   * Secure Token Authorization and User Authentication
-  And many more features.
-  <br />
 
 ## Compatibility
 Minimal broswer requirement tested on BrowserStack and in accordance with caniuse.com.
@@ -30,7 +27,7 @@ Minimal broswer requirement tested on BrowserStack and in accordance with canius
 | Version | >=79 | >=41    | >=12.1 | >=56  | >=69   |
 
 ## 🚀 Try It Out!
-The website is [live](backflips.vercel.app).
+The website is [live](https://backflips.vercel.app/).
 
 ## 🛠 Getting Started
 ### Step 1
